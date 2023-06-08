@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+    <head>
+        <!-- Required HTML5 head elements -->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Flight Search</title>
+        <link rel="stylesheet" href="../../webapp/css/styles.css" />
+      </head>
+      <body>
+        <!-- This is the form label -->
+        <h1>Flight Search</h1>
+        <!-- Initialize the form -->
+        <form id="flightSearchForm">
+            <!-- Label for the startingLocation input field -->
+          <label for="startLocation">Departing from:</label>
+          <!-- Declarations for the input field setting the input type to text, giving it an id of startingLocation, name, and marking it as a required field for the form -->
+          <input 
+            type="text" 
+            id="startLocation" 
+            name="startLocation" 
+            required
+          />
+          <!-- New Line -->
+          <br />
+          <!-- The remaining elements follow the same pattern as above -->
+          <label for="endLocation">Arriving at:</label>
+          <input 
+            type="text" 
+            id="endLocation" 
+            name="endLocation" 
+            required
+          />
+          <br />
+          <label for="travelDate">Departure Date:</label>
+          <input 
+            type="date" 
+            id="travelDate" 
+            name="travelDate" 
+            required
+          />
+          <br />
+          <label for="numTravelers">Number of Travelers:</label>
+          <input 
+            type="number" 
+            id="numTravelers" 
+            name="numTravelers" 
+            min="1"
+            max="10"
+            required
+          />
+          <br />
+          <!-- A reset control in case the user wishes to clear the form and start over -->
+          <input type="reset" value="Reset" />
+          <!-- Submit the results and perform the search, the scripts.js has an event listener that will pick up this submittal and execute the search with the input parameters -->
+          <input type="submit" value="Search Flights" />
+        </form>
+        <div id="flightSearchResults"></div>
+        <script src="../../webapp/js/script.js"></script>
+      </body>
+    </html>

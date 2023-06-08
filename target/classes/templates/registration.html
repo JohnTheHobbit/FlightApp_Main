@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../../webapp/css/styles.css" />
+</head>
+<body>
+    <h1>Registration</h1>
+    <form id="registrationForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p>Already have an account? <a href="index.html">Login here</a>.</p>
+
+    <script>
+        // Handle registration form submission
+        $('#registrationForm').submit(function (event) {
+            event.preventDefault();
+            var username = $('#username').val();
+            var password = $('#password').val();
+
+            $.ajax({
+                url: 'http://localhost:8081/api/users/register',
+                method: 'POST',
+                data: {
+                    username: username,
+                    password: password
+                },
+                success: function () {
+                    alert('Registration successful! Please login.');
+                    window.location.href = 'index.html';
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

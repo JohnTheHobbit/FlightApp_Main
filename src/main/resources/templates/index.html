@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="../../webapp/css/styles.css" />
+</head>
+<body>
+    <h1>Login</h1>
+    <div id="loginSection">
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
+
+            <button type="submit">Login</button>
+        </form>
+        <p id="accountNotFound" style="display: none;">Account not found. Please <a href="registration.html">register</a> instead.</p>
+    </div>
+
+    <p>Don't have an account? <a href="registration.html">Register here</a>.</p>
+
+    <script>
+        // Handle login form submission
+        $('#loginForm').submit(function (event) {
+            event.preventDefault();
+            var username = $('#username').val();
+            var password = $('#password').val();
+
+            $.ajax({
+                url: 'http://localhost:8082/api/users/authenticate',
+                method: 'POST',
+                data: {
+                    username: username,
+                    password: password
+                },
+                success: function () {
+                    window.location.href = 'flights.html';
+                },
+                error: function (xhr) {
+                    if (xhr.status === 401) {
+                        $('#accountNotFound').show();
+                    } else {
+                        alert(xhr.responseText);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
